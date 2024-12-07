@@ -29,13 +29,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} text-white bg-black ${geistMono.variable} antialiased`}
       >
-        
-          <SessionProviderComponent session={session}>
+        <SessionProviderComponent session={session}>
+          <div className="flex flex-col">
             <Header />
 
             {children}
-          </SessionProviderComponent>
-        
+          </div>
+        </SessionProviderComponent>
       </body>
     </html>
   );
