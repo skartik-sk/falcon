@@ -1,14 +1,11 @@
 "use client";
-
-
-
-
 import Link from "next/link";
 import Image from "next/image";
 import SignInButton from "@/components/okto/utls";
 
-const Header = () => {
 
+const Header = ({ setAuthToken, authToken, handleLogout }) => {
+ 
 
   // useEffect(() => {
   //     if (!provider.wallet.publicKey) {
@@ -42,7 +39,7 @@ const Header = () => {
          
         </div>
         <div className="flex flex-col-reverse justify-center items-center sm:flex sm:flex-row gap-2 right-0">
-        <SignInButton/>
+        <SignInButton setAuthToken={setAuthToken} authToken={authToken} handleLogout={handleLogout}/>
         </div>
         {/* <div className="absolute inset-y-0 right-0 flex items-center sm:hidden">
                             <button type="button" className="bg-gray-900 inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
