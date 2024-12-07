@@ -1,10 +1,16 @@
 import PredictionCard from "@/components/prediction-card";
 import { predictions } from "@/lib/data";
+import { Button } from "./ui/button";
 
 export default function FeedPage() {
   return (
     <div className="w-full ">
-      <h1 className="text-2xl font-bold mb-6">Prediction Feed</h1>
+      <div className="flex justify-between">
+        <div className="text-2xl font-bold mb-6">Feed</div>
+        <div>
+          <Button className="ml-auto">Raise Concern</Button>
+        </div>
+      </div>
       <div className="flex flex-wrap gap-4 justify-center sm:justify-start">
         {predictions.map((prediction) => (
           <div

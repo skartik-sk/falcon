@@ -27,25 +27,30 @@ export default function ThreeColumnLayout({
           </Button>
         </SheetTrigger>
         <SheetContent side="left" className="w-[240px] sm:w-[300px] text-white bg-black">
-          <nav className="flex flex-col gap-4">
+          <nav className="flex flex-col justify-between">
+            <div className="flex flex-col gap-4">
+              <Button variant="ghost" className="justify-start">
+                Home
+              </Button>
+              <Button variant="ghost" className="justify-start">
+                Markets
+              </Button>
+              <Button variant="ghost" className="justify-start">
+                Portfolio
+              </Button>
+              <Button variant="ghost" className="justify-start">
+                Leaderboard
+              </Button>
+            </div>
             <Button variant="ghost" className="justify-start">
-              Home
-            </Button>
-            <Button variant="ghost" className="justify-start">
-              Markets
-            </Button>
-            <Button variant="ghost" className="justify-start">
-              Portfolio
-            </Button>
-            <Button variant="ghost" className="justify-start">
-              Leaderboard
+              Logout
             </Button>
           </nav>
         </SheetContent>
       </Sheet>
 
       {/* Left Sidebar - Navigation */}
-      <nav className="hidden mt-24 lg:flex w-[240px] flex-col justify-between border-r p-6 text-white bg-black">
+      <nav className="hidden h-[85vh] lg:fixed mt-24 lg:flex w-[240px] flex-col justify-between border-r p-6 text-white bg-black">
         <div className="flex flex-col gap-4">
           <Button variant="ghost" className="justify-start">
             Home
@@ -66,12 +71,12 @@ export default function ThreeColumnLayout({
       </nav>
 
       {/* Main Content Area */}
-      <main className="flex-1 mt-24 px-4 py-6 lg:px-8 overflow-y-auto">
+      <main className="flex-1 lg:ml-[240px] lg:mr-[300px] mt-24 px-4 py-6 lg:px-8 overflow-y-auto">
         {children}
       </main>
 
       {/* Right Sidebar - Verified Users */}
-      <aside className="hidden mt-24 lg:block w-[300px] border-l p-6">
+      <aside className="hidden mt-24 fixed right-0 lg:block w-[300px] border-1 p-6">
         <h2 className="text-lg font-semibold mb-4">Verified Users</h2>
         {/* Content will be added later */}
       </aside>
