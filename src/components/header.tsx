@@ -1,10 +1,5 @@
 "use client";
-import {
-  LogInWithAnonAadhaar,
-  useAnonAadhaar,
-  AnonAadhaarProof,
-  useProver,
-} from "@anon-aadhaar/react";
+
 import Link from "next/link";
 import Image from "next/image";
 import SignInButton from "@/components/okto/utls";
