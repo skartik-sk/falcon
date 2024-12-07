@@ -1,11 +1,33 @@
 "use client";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { useEffect } from "react";
 // import { useWalletMultiButton } from '@solana/wallet-adapter-base-ui';
 import axios from "axios";
 import Image from "next/image";
+// import { logoutGoogle } from "./utls-server";
+import Cookies from "js-cookie";
 
 // const  { authenticate } = useOkto() as OktoContextType;
+
+const logoutGoogle = async () => {
+  try {
+    // Only run on client side
+    if (typeof window !== "undefined") {
+      // Remove next-auth session token cookie
+      document.cookie =
+        "next-auth.session-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" +
+        window.location.hostname;
+    }
+
+    // Sign out using NextAuth
+    await signOut({
+      redirect: true,
+      callbackUrl: "/",
+    });
+  } catch (error) {
+    console.error("Logout error:", error);
+  }
+};
 
 const getWallet = async (auth_token: string) => {
   console.log(auth_token);
@@ -51,10 +73,10 @@ async function executeTokenTransfer(
   tokenAddress: string,
   quantity: string,
   recipientAddress: string,
-  auth_token:string
+  auth_token: string
 ): Promise<TransferResponse> {
   const url = "https://sandbox-api.okto.tech/api/v1/transfer/tokens/execute";
-console.log(auth_token);
+  console.log(auth_token);
   const body = JSON.stringify({
     network_name: networkName,
     token_address: tokenAddress,
@@ -65,7 +87,7 @@ console.log(auth_token);
   const options: RequestInit = {
     method: "POST",
     headers: {
-      Authorization: "Bearer YOUR_SECRET_TOKEN", 
+      Authorization: "Bearer YOUR_SECRET_TOKEN",
     },
     body: body,
   };
@@ -101,8 +123,10 @@ const createWalletOkto = async (auth_token: string) => {
     console.error(error);
   }
 };
-
-const SignInButton = () => {
+type SignInButtonProps = {
+  verified: string | null;
+};
+const SignInButton: React.FC<SignInButtonProps> = ({ verified }) => {
   const { data: session } = useSession();
   // const provider = useAnchorProvider();
   // const { setVisible: setModalVisible } = useWalletModal();
@@ -112,7 +136,7 @@ const SignInButton = () => {
   //       },
   //   });
   // if(!session?.idToken && provider.wallet.publicKey){
-      
+
   //       signIn("google"); //
   //     }
   // useEffect(() => {
@@ -168,30 +192,69 @@ const SignInButton = () => {
   }, [session]);
 
   return (
-    <>{
-        session?.idToken ? (<Image alt="profile" height={50} width={50} className="rounded-full" src={session.user?.image? session.user?.image: ""}/>):(
-        <>
-        <div className="flex">
-        <div className="flex items-center justify-center  bg-white">
+    <>
+      {session?.idToken ? (
+        <div className="right ">
+          {verified && (
+            <div className="absolute bg-green-600 scale-75 border-2 border-[#1f1f1f]  rounded-full bottom-3 right-2">
+              <CheckIcon />{" "}
+            </div>
+          )}
 
-    <button onClick={signInWithGoogle} className="px-4 py-2 border flex gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150">
-
-        <Image width={10} height={10} className="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo"/>
-
-        <span>Login with Google</span>
-
-    </button>
-
-</div>
+          <Image
+            onClick={logoutGoogle}
+            alt="profile"
+            height={38}
+            width={38}
+            className="rounded-full"
+            src={session.user?.image ? session.user?.image : ""}
+          />
         </div>
-       
+      ) : (
+        <>
+          <div className="flex">
+            <div className="flex px-2 rounded-md items-center justify-center  bg-white">
+              <button
+                onClick={signInWithGoogle}
+                className="px-4d py-2 border flex gap-2 border-slate-200 rounded-lg dark:text-slate-200   transition duration-150"
+              >
+                <Image
+                  width={10}
+                  height={10}
+                  className="w-6 h-6"
+                  src="https://www.svgrepo.com/show/475656/google-color.svg"
+                  loading="lazy"
+                  alt="google logo"
+                />
+
+                <span className="text-black">Login with Google</span>
+              </button>
+            </div>
+          </div>
         </>
-    )
-    }
-        </>
-   
+      )}
+    </>
   );
 };
 
- export { getWallet, Logout, executeTokenTransfer};
+const CheckIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      className="lucide lucide-check"
+    >
+      <path d="M20 6 9 17l-5-5" />
+    </svg>
+  );
+};
+
+export { getWallet, Logout, executeTokenTransfer };
 export default SignInButton;

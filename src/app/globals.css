@@ -1,7 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -14,6 +14,11 @@
   }
 }
 
+.logo-font {
+  font-family: "Satisfy", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
 body {
   color: var(--foreground);
   background: var(--background);
