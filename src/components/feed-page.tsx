@@ -3,7 +3,7 @@ import { predictions } from "@/lib/data";
 
 export default function FeedPage() {
   return (
-    <div className="w-full">
+    <div className="w-full ">
       <h1 className="text-2xl font-bold mb-6">Prediction Feed</h1>
       <div className="flex flex-wrap gap-4 justify-center sm:justify-start">
         {predictions.map((prediction) => (
