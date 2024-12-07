@@ -4,7 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import SessionProviderComponent from "@/providers/SessionProviderComponent";
 import Header from "@/components/header";
-import { AnonAadhaarProvider } from "@anon-aadhaar/react";
+// import { AnonAadhaarProvider } from "@anon-aadhaar/react";
 import { useState } from "react";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,13 +29,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <AnonAadhaarProvider _useTestAadhaar={true}>
+        
           <SessionProviderComponent session={session}>
             <Header />
 
             {children}
           </SessionProviderComponent>
-        </AnonAadhaarProvider>
+        
       </body>
     </html>
   );

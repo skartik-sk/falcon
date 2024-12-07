@@ -1,14 +1,25 @@
-import Link from 'next/link'
-import { ArrowDownIcon, ArrowUpIcon, MessageSquare, Star } from 'lucide-react'
+import Link from "next/link";
+import { ArrowDownIcon, ArrowUpIcon, MessageSquare, Star } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
-import { Prediction } from "@/lib/data"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardFooter,
+} from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+import { Prediction } from "@/lib/data";
 
-type PredictionCardProps = Prediction
+type PredictionCardProps = Prediction;
 
-export function PredictionCard({ id, question, chance, volume, comments }: PredictionCardProps) {
+export default function PredictionCard({
+  id,
+  question,
+  chance,
+  volume,
+  comments,
+}: PredictionCardProps) {
   return (
     <Link href={`/prediction/${id}`} className="block w-full">
       <Card className="w-full hover:shadow-md transition-shadow duration-200">
@@ -24,7 +35,10 @@ export function PredictionCard({ id, question, chance, volume, comments }: Predi
         <CardContent className="pb-2">
           <Progress value={chance} className="mb-2" />
           <div className="grid grid-cols-2 gap-2">
-            <Button size="sm" className="w-full bg-green-600 hover:bg-green-700">
+            <Button
+              size="sm"
+              className="w-full bg-green-600 hover:bg-green-700"
+            >
               <ArrowUpIcon className="mr-1 h-3 w-3" />
               Buy Yes
             </Button>
@@ -46,6 +60,5 @@ export function PredictionCard({ id, question, chance, volume, comments }: Predi
         </CardFooter>
       </Card>
     </Link>
-  )
+  );
 }
-

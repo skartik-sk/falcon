@@ -1,14 +1,26 @@
-import Image from 'next/image'
-import { ArrowDownIcon, ArrowUpIcon, MessageSquare, Star } from 'lucide-react'
+import Image from "next/image";
+import { ArrowDownIcon, ArrowUpIcon, MessageSquare, Star } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
-import { Prediction } from "@/lib/data"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardFooter,
+} from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+import { Prediction } from "@/lib/data";
 
-type PredictionDetailProps = Prediction
+type PredictionDetailProps = Prediction;
 
-export function PredictionDetail({ question, chance, volume, comments, description, imageUrl }: PredictionDetailProps) {
+export default function PredictionDetail({
+  question,
+  chance,
+  volume,
+  comments,
+  description,
+  imageUrl,
+}: PredictionDetailProps) {
   return (
     <Card className="w-full">
       <CardHeader className="pb-2">
@@ -21,7 +33,13 @@ export function PredictionDetail({ question, chance, volume, comments, descripti
         </div>
       </CardHeader>
       <CardContent className="space-y-4">
-        <Image src={imageUrl} alt={question} width={800} height={400} className="w-full h-64 object-cover rounded-md" />
+        <Image
+          src={imageUrl}
+          alt={question}
+          width={800}
+          height={400}
+          className="w-full h-64 object-cover rounded-md"
+        />
         <Progress value={chance} className="mb-2" />
         <div className="grid grid-cols-2 gap-4">
           <Button className="w-full bg-green-600 hover:bg-green-700">
@@ -46,6 +64,5 @@ export function PredictionDetail({ question, chance, volume, comments, descripti
         </div>
       </CardFooter>
     </Card>
-  )
+  );
 }
-

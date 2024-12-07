@@ -1,18 +1,21 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { Menu } from 'lucide-react'
+import * as React from "react";
+import { Menu } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { cn } from "@/lib/utils";
 
 interface ThreeColumnLayoutProps {
-  children?: React.ReactNode
-  className?: string
+  children?: React.ReactNode;
+  className?: string;
 }
 
-export function ThreeColumnLayout({ children, className }: ThreeColumnLayoutProps) {
+export default function ThreeColumnLayout({
+  children,
+  className,
+}: ThreeColumnLayoutProps) {
   return (
     <div className={cn("flex min-h-screen bg-background", className)}>
       {/* Mobile Menu Button */}
@@ -25,20 +28,36 @@ export function ThreeColumnLayout({ children, className }: ThreeColumnLayoutProp
         </SheetTrigger>
         <SheetContent side="left" className="w-[240px] sm:w-[300px]">
           <nav className="flex flex-col gap-4">
-            <Button variant="ghost" className="justify-start">Home</Button>
-            <Button variant="ghost" className="justify-start">Markets</Button>
-            <Button variant="ghost" className="justify-start">Portfolio</Button>
-            <Button variant="ghost" className="justify-start">Leaderboard</Button>
+            <Button variant="ghost" className="justify-start">
+              Home
+            </Button>
+            <Button variant="ghost" className="justify-start">
+              Markets
+            </Button>
+            <Button variant="ghost" className="justify-start">
+              Portfolio
+            </Button>
+            <Button variant="ghost" className="justify-start">
+              Leaderboard
+            </Button>
           </nav>
         </SheetContent>
       </Sheet>
 
       {/* Left Sidebar - Navigation */}
       <nav className="hidden mt-24 lg:flex w-[240px] flex-col gap-4 border-r p-6">
-        <Button variant="ghost" className="justify-start">Home</Button>
-        <Button variant="ghost" className="justify-start">Markets</Button>
-        <Button variant="ghost" className="justify-start">Portfolio</Button>
-        <Button variant="ghost" className="justify-start">Leaderboard</Button>
+        <Button variant="ghost" className="justify-start">
+          Home
+        </Button>
+        <Button variant="ghost" className="justify-start">
+          Markets
+        </Button>
+        <Button variant="ghost" className="justify-start">
+          Portfolio
+        </Button>
+        <Button variant="ghost" className="justify-start">
+          Leaderboard
+        </Button>
       </nav>
 
       {/* Main Content Area */}
@@ -52,5 +71,5 @@ export function ThreeColumnLayout({ children, className }: ThreeColumnLayoutProp
         {/* Content will be added later */}
       </aside>
     </div>
-  )
+  );
 }

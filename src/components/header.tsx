@@ -39,7 +39,13 @@ const Header = () => {
           {/* logo thinggg */}
           <div className="flex-shrink-0 flex  items-center pl-4 lg:pl-6 ">
             <Link href="/">
-              <h2 className="logo-font text-[32px]">Falcon</h2>
+              <Image
+                className="block  h-16 w-auto"
+                src="https://img.freepik.com/free-vector/bird-colorful-gradient-design-vector_343694-2506.jpg"
+                alt="Workflow"
+                width={64}
+                height={64}
+              />
             </Link>
           </div>
           {/* Toggle thingg */}
