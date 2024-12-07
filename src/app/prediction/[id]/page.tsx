@@ -1,6 +1,6 @@
 
-import { PredictionDetail } from "@/components/prediction-detail"
-import { ThreeColumnLayout } from "@/components/three-column-layout"
+import PredictionDetail  from "@/components/prediction-detail"
+import  ThreeColumnLayout  from "@/components/three-column-layout"
 import { getPrediction } from "@/lib/data"
 
 export default function PredictionPage({ params }: { params: { id: string } }) {

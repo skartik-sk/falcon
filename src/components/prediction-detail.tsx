@@ -8,7 +8,7 @@ import { Prediction } from "@/lib/data"
 
 type PredictionDetailProps = Prediction
 
-export function PredictionDetail({ question, chance, volume, comments, description, imageUrl }: PredictionDetailProps) {
+export default function PredictionDetail({ question, chance, volume, comments, description, imageUrl }: PredictionDetailProps) {
   return (
     <Card className="w-full">
       <CardHeader className="pb-2">

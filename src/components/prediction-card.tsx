@@ -8,7 +8,7 @@ import { Prediction } from "@/lib/data"
 
 type PredictionCardProps = Prediction
 
-export function PredictionCard({ id, question, chance, volume, comments }: PredictionCardProps) {
+export default function PredictionCard({ id, question, chance, volume, comments }: PredictionCardProps) {
   return (
     <Link href={`/prediction/${id}`} className="block w-full">
       <Card className="w-full hover:shadow-md transition-shadow duration-200">

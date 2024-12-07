@@ -1,7 +1,7 @@
-import { PredictionCard } from "@/components/prediction-card"
+import  PredictionCard from "@/components/prediction-card"
 import { predictions } from "@/lib/data"
 
-export function FeedPage() {
+export default function FeedPage() {
   return (
     <div className="w-full">
       <h1 className="text-2xl font-bold mb-6">Prediction Feed</h1>

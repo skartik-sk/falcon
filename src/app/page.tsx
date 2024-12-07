@@ -1,5 +1,5 @@
-import { FeedPage } from "@/components/feed-page"
-import { ThreeColumnLayout } from "@/components/three-column-layout"
+import  FeedPage  from "@/components/feed-page"
+import  ThreeColumnLayout  from "@/components/three-column-layout"
 
 export default function Home() {
   return (

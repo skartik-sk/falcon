@@ -12,7 +12,7 @@ interface ThreeColumnLayoutProps {
   className?: string
 }
 
-export function ThreeColumnLayout({ children, className }: ThreeColumnLayoutProps) {
+export default function ThreeColumnLayout({ children, className }: ThreeColumnLayoutProps) {
   return (
     <div className={cn("flex min-h-screen bg-background", className)}>
       {/* Mobile Menu Button */}
