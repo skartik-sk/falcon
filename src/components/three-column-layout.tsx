@@ -20,28 +20,14 @@ export default function ThreeColumnLayout({
     <div className={cn("flex min-h-screen text-white bg-gradient-to-br from-purple-900/50 via-black to-blue-900/30", className)}>
       {/* Mobile Menu Button */}
       <Sheet>
-        <SheetTrigger asChild className="lg:hidden absolute left-4 top-20 z-8 text-white bg-gradient-to-br from-purple-900/50 via-black to-blue-900/30 border-none">
+        <SheetTrigger asChild className="lg:hidden fixed left-4 top-20 z-8 text-white border-none">
           <Button variant="outline" size="icon">
             <Menu className="h-4 w-4" />
             <span className="sr-only">Toggle navigation menu</span>
           </Button>
         </SheetTrigger>
-        <SheetContent side="left" className="w-[240px] sm:w-[300px] text-white bg-gradient-to-br from-purple-900/50 via-black to-blue-900/30">
-          <nav className="flex flex-col justify-between">
-            <div className="flex flex-col gap-4">
-              <Button variant="ghost" className="justify-start">
-                Home
-              </Button>
-              <Button variant="ghost" className="justify-start">
-                Markets
-              </Button>
-              <Button variant="ghost" className="justify-start">
-                Portfolio
-              </Button>
-              <Button variant="ghost" className="justify-start">
-                Leaderboard
-              </Button>
-            </div>
+        <SheetContent side="left" className="w-[240px] sm:w-[300px] text-white bg-black">
+          <nav className="flex flex-col gap-4">
             <Button variant="ghost" className="justify-start">
               Logout
             </Button>
