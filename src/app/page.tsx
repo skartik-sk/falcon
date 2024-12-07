@@ -8,7 +8,6 @@ import { Card } from "@/components/ui/card1";
 import { Input } from "@/components/ui/input";
 import { Accordion, AccordionItem } from "@nextui-org/react";
 import { MessageCircle, Shield, Sparkles, Users } from "lucide-react";
-'use client';
 import MainPage from "@/components/mainpage";
 import Link from "next/link";import { GoogleOAuthProvider } from "@react-oauth/google";
 
@@ -23,7 +22,7 @@ export default function Home() {
    };
   return (
     <>
-     <GoogleOAuthProvider clientId = {'1043490850112-e5f7nk4dogfktgg25ng28t96jp1gfnaf.apps.googleusercontent.com' }>
+     <GoogleOAuthProvider clientId = {'1043490850112-1tq082boavjlrovfooila737opscklkv.apps.googleusercontent.com' }>
     <OktoProvider apiKey={"02a1ac80-683f-4d32-b3c4-cb7101f9e2f3"} buildType={BuildType.SANDBOX}>
       <div>
 
