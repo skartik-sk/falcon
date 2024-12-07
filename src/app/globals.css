@@ -1,21 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  color: var(--foreground);
-  background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.logo-font {
+  font-family: "Satisfy", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Inside your CSS file */
+.text-gd {
+  @apply mb-6 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent;
 }
