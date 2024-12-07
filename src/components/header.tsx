@@ -25,7 +25,7 @@ const Header = () => {
           <div className="flex-shrink-0 flex items-center pl-4 lg:pl-6 ">
             <Link href="/">
               <Image
-                className="block lg:hidden h-16 w-auto"
+                className="block  h-16 w-auto"
                 src="https://img.freepik.com/free-vector/bird-colorful-gradient-design-vector_343694-2506.jpg"
                 alt="Workflow"
                 width={64}
