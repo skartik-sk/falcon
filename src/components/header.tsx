@@ -16,6 +16,7 @@ type Verified = {
 };
 const Header = () => {
   const [verified, setVerified] = useState<string | null>(null);
+  const [dis, setDis] = useState(false);
   useEffect(() => {
     // Fetch from localStorage
     let anon = localStorage.getItem("anonAadhaar");
@@ -26,8 +27,6 @@ const Header = () => {
 
       if (anonData && anonData.status === "logged-in") {
         setVerified("logged-in"); // Set it to the desired value
-      } else {
-        setVerified(null); // Or handle the case when not logged in
       }
     }
   }, []);
@@ -54,8 +53,8 @@ const Header = () => {
         // className={`hidden sm:${provider.wallet.publicKey ? "flex" : "hidden"} pl-28 justify-center items-center`}
         ></div>
         <div className="flex flex-col-reverse  justify-center items-center sm:flex sm:flex-row gap-2 right-0">
-          {!verified && <Anon verified={verified} setVerified={setVerified} />}
-          <SignInButton verified={verified} />
+          {!verified && <Anon verified={verified} Dis={dis} />}
+          <SignInButton setDis={setDis} verified={verified} />
         </div>
         {/* <div className="absolute inset-y-0 right-0 flex items-center sm:hidden">
                             <button type="button" className="bg-gray-900 inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">

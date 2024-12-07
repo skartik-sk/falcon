@@ -8,10 +8,9 @@ import { useEffect } from "react";
 
 type Verified = {
   verified: string | null;
-  setVerified: (value: string | null) => void;
+  Dis: boolean;
 };
-
-export default function Home({ verified, setVerified }: Verified) {
+export default function Home({ verified, Dis }: Verified) {
   const [anonAadhaar] = useAnonAadhaar();
   const [, latestProof] = useProver();
 
@@ -21,7 +20,7 @@ export default function Home({ verified, setVerified }: Verified) {
 
   return (
     <>
-      {!verified && (
+      {!verified && Dis && (
         <div>
           <LogInWithAnonAadhaar nullifierSeed={1234} />
 

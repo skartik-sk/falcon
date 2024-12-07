@@ -125,8 +125,9 @@ const createWalletOkto = async (auth_token: string) => {
 };
 type SignInButtonProps = {
   verified: string | null;
+  setDis: React.Dispatch<React.SetStateAction<boolean>>; // setDis should return void, not boolean
 };
-const SignInButton: React.FC<SignInButtonProps> = ({ verified }) => {
+const SignInButton: React.FC<SignInButtonProps> = ({ verified, setDis }) => {
   const { data: session } = useSession();
   // const provider = useAnchorProvider();
   // const { setVisible: setModalVisible } = useWalletModal();
@@ -167,6 +168,7 @@ const SignInButton: React.FC<SignInButtonProps> = ({ verified }) => {
       const { data } = await axios.request(options);
       createWalletOkto(data.auth_token);
       console.log(data);
+      setDis(true);
       return data;
     } catch (error) {
       console.error(error);
@@ -195,7 +197,7 @@ const SignInButton: React.FC<SignInButtonProps> = ({ verified }) => {
     <>
       {session?.idToken ? (
         <div className="right ">
-          {verified && (
+          {verified == "logged-in" && (
             <div className="absolute bg-green-600 scale-75 border-2 border-[#1f1f1f]  rounded-full bottom-3 right-2">
               <CheckIcon />{" "}
             </div>
