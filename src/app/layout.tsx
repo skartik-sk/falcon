@@ -6,6 +6,7 @@ import SessionProviderComponent from "@/providers/SessionProviderComponent";
 import Header from "@/components/header";
 // import { AnonAadhaarProvider } from "@anon-aadhaar/react";
 import { useState } from "react";
+import Footer from "@/components/footer";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -34,6 +35,7 @@ export default function RootLayout({
             <Header />
 
             {children}
+            <Footer />
           </div>
         </SessionProviderComponent>
       </body>

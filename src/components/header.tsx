@@ -27,7 +27,9 @@ const Header = () => {
         <div className="flex items-center justify-center sm:items-stretch sm:justify-start">
           <div className="flex-shrink-0 flex items-center  ">
             <Link href="/">
-              <span className="logo-font text-[42px] text-white">Falcon</span>
+              <span className="logo-font text-[42px] text-white">
+                Anonyshare
+              </span>
             </Link>
           </div>
         </div>

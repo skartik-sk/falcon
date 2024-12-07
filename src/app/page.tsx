@@ -2,7 +2,9 @@
 
 import CommunitySection from "@/components/community";
 import { FAQSection } from "@/components/faqsection";
+import { FeaturesSectionDemo } from "@/components/featuresection";
 import Footer from "@/components/footer";
+import { BackgroundLines } from "@/components/ui/background-lines";
 import { Button } from "@/components/ui/button1";
 import { Card } from "@/components/ui/card1";
 import { Input } from "@/components/ui/input";
@@ -21,36 +23,13 @@ export default function Home() {
         <div className="min-h-screen bg-black text-white">
           {/* Hero Section */}
           <div className="relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-900/50 via-black to-blue-900/30" />
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-black to-blue-900" />
             <div className="absolute inset-0">
               <div className="h-full w-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/20 via-black to-transparent" />
             </div>
 
             {/* Content */}
             <div className="relative pt-40 ">
-              {/* <header className="px-4 lg:px-8 h-16 flex items-center justify-between">
-                <div className="text-xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-                  AnonyShare
-                </div>
-                <nav className="flex gap-4">
-                  <Button
-                    variant="ghost"
-                    className="text-gray-300 hover:text-white"
-                  >
-                    About
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    className="text-gray-300 hover:text-white"
-                  >
-                    Features
-                  </Button>
-                  <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700">
-                    Connect Wallet
-                  </Button>
-                </nav>
-              </header> */}
-
               <main className="container mx-auto pt-16  ">
                 <div className="text-center pb-20 space-y-8">
                   <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight">
@@ -115,7 +94,7 @@ export default function Home() {
 
                 {/* Circular Feature */}
                 <CommunitySection />
-
+                {/* <FeaturesSectionDemo /> */}
                 {/* CTA Section */}
                 <div className="mt-32 text-center">
                   <Card className="py-16 bg-gradient-to-br from-purple-900/100 via-black to-blue-900/100 border-none">

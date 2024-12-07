@@ -22,7 +22,7 @@ export default function PredictionDetail({
   imageUrl,
 }: PredictionDetailProps) {
   return (
-    <Card className="w-full text-white bg-black">
+    <Card className="w-full">
       <CardHeader className="pb-2">
         <div className="flex items-start justify-between">
           <h1 className="text-2xl font-semibold">{question}</h1>

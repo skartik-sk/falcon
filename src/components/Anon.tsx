@@ -22,7 +22,15 @@ export default function Home({ verified, Dis }: Verified) {
     <>
       {!verified && Dis && (
         <div>
-          <LogInWithAnonAadhaar nullifierSeed={1234} />
+          <LogInWithAnonAadhaar
+            fieldsToReveal={[
+              "revealAgeAbove18",
+              "revealPinCode",
+              "revealState",
+              "revealGender",
+            ]}
+            nullifierSeed={1234}
+          />
 
           {/* <p>{anonAadhaar?.status}</p> */}
         </div>

@@ -18,3 +18,30 @@ body {
 .text-gd {
   @apply mb-6 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent;
 }
+
+
+
+/* Apply to specific element or globally */
+::-webkit-scrollbar {
+  width: 6px; /* Set the scrollbar width */
+  height: 6px; /* For horizontal scrollbar (optional) */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* Make the track transparent */
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.4); /* Lightly visible thumb */
+  border-radius: 3px; /* Rounded corners for thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.282); /* Slightly more visible on hover */
+}
+
+/* Optional for cross-browser support */
+.scrollbar-custom {
+  scrollbar-width: thin; /* Thin scrollbar for Firefox */
+  scrollbar-color: rgba(255, 255, 255, 0.4) transparent; /* Thumb and track */
+}

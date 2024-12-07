@@ -9,7 +9,7 @@ import Cookies from "js-cookie";
 
 // const  { authenticate } = useOkto() as OktoContextType;
 
-const logoutGoogle = async () => {
+export const logoutGoogle = async () => {
   try {
     // Only run on client side
     if (typeof window !== "undefined") {
