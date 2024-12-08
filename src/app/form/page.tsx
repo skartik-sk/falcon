@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -51,12 +51,18 @@ export default function BlackWhiteForm() {
         const imageUrl = URL.createObjectURL(file);
         setUploadedImageUrl(imageUrl);
       }
-    } catch (error) {
+    
+    } 
+
+    catch (error) {
+
       if (error instanceof Error) {
         setResponse({ error: error.message });
       } else {
         setResponse({ error: 'An unknown error occurred' });
       }
+    }finally{
+     return true
     }
   };
   const { 
@@ -66,19 +72,26 @@ export default function BlackWhiteForm() {
 
   const  handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    await handleStoreBlob();
+    const blog = await handleStoreBlob();
+    console.log(blog)
 
     
   writeContract({
     address: CONTRACT_ADDRESS,
     abi: CONTRACT_ABI,
     functionName: 'createPost',
-    args: [formData.title, "ksdjaf", formData.description],
+    args: [formData.title," imgurl" , formData.description],
   })
-  console.log(hash);
+  
     console.log('Form submitted:', formData)
     // Here you would typically send the data to an API
   }
+useEffect(() => {
+  if (hash) {
+    console.log('Transaction hash:', hash)
+  }
+}
+, [hash])
 
   return (
     <>

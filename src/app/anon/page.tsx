@@ -5,7 +5,9 @@ import React from 'react'
 const Page = () => {
   return (
     <div>
+     
         <Annon verified={''} Dis ={false}/>
+   
     </div>
   )
 }

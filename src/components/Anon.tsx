@@ -21,12 +21,12 @@ export default function Annon({ verified, Dis }: Verified) {
   }, [anonAadhaar]);
   return (
     <>
-      {!verified && Dis && (
+      
         <div className="m-64">
           <LogInWithAnonAadhaar nullifierSeed={1234} />
           {/* <p>{anonAadhaar?.status}</p> */}
         </div>
-      )}
+      
     </>
   );
 }

@@ -78,22 +78,10 @@ const SignInButton = ({ setAuthToken, authToken, handleLogout }) => {
 
   return (
     <><div>
-      {!authToken ? (
-        <GoogleLogin
-          onSuccess={handleGoogleLogin}
-          onError={ (error) => {
-            console.log("Login Failed", error);
-          }}
-          useOneTap
-          promptMomentNotification={(notification) =>
-            console.log("Prompt moment notification:", notification)
-          }
-        />
-      ) : (
-        <ConnectButton
+      
+        <ConnectButton/>
          
-        />
-      )}
+     
     </div>
         </>
    

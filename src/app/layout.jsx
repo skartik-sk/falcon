@@ -1,17 +1,12 @@
 "use client";
 
-import type { Metadata } from "next";
+
 import localFont from "next/font/local";
 import "./globals.css";
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+
 // import { AnonAadhaarProvider } from "@anon-aadhaar/react";
-import { useState } from "react";
-import { WagmiConfig, WagmiProvider } from 'wagmi'
-import { config } from './lib/config'
-import {
-  getDefaultConfig,
-  RainbowKitProvider,
-} from '@rainbow-me/rainbowkit';
+import { RainbowProvider } from "@/context/rainbow.jsx";
+
 import '@rainbow-me/rainbowkit/styles.css';
 
 const geistSans = localFont({
@@ -27,12 +22,8 @@ const geistMono = localFont({
 
 
 export default function RootLayout({
-  children,
-  session,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  const queryClient = new QueryClient();
+  children}
+  ) {
   return (
     <html lang="en">
       <body
@@ -40,14 +31,13 @@ export default function RootLayout({
       >
      
 
-     <WagmiProvider config={config}>
-     <QueryClientProvider client={queryClient}>
-<RainbowKitProvider>
+    <RainbowProvider>
+
+
 
       {children}
-</RainbowKitProvider>
-      </QueryClientProvider>
-      </WagmiProvider>
+    </RainbowProvider>
+
 
 
    

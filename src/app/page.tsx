@@ -6,14 +6,13 @@ import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button1";
 import { Card } from "@/components/ui/card1";
 import { Input } from "@/components/ui/input";
-
-import { Accordion, AccordionItem } from "@nextui-org/react";
-import { MessageCircle, Shield, Sparkles, Users } from "lucide-react";
+import { MessageCircle, Shield, Sparkles } from "lucide-react";
 import MainPage from "@/components/mainpage";
 import Link from "next/link";import { GoogleOAuthProvider } from "@react-oauth/google";
 
 import { BuildType, OktoProvider } from "okto-sdk-react";
 import { useState } from "react";
+import Annon from "@/components/Anon";
 
 export default function Home() {
   const [authToken, setAuthToken] = useState(null);
@@ -84,14 +83,14 @@ export default function Home() {
                     Powered by blockchain technology.
                   </p>
                   <div className="flex justify-center gap-4">
-                    <Link href={"/feed"}>
+
                       <Button
                         size="lg"
                         className="bg-gradient-to-r rounded from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
                       >
-                        Start Sharing
+                        <Annon verified={''} Dis ={false}/>
                       </Button>
-                    </Link>
+                   
                     <Button
                       size="lg"
                       variant="outline"

@@ -1,20 +1,7 @@
-export const CONTRACT_ADDRESS = "0x44B170998ED33250ba95fa64791d074E9D0415dD"
+export const CONTRACT_ADDRESS = "0xD06BA77e347B7230622B0331A3ad69fd84424967"
 
 
 export const CONTRACT_ABI=[
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_admin",
-				"type": "address"
-			}
-		],
-		"name": "addAdmin",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
 	{
 		"inputs": [
 			{
@@ -38,59 +25,6 @@ export const CONTRACT_ABI=[
 		],
 		"stateMutability": "nonpayable",
 		"type": "function"
-	},
-	{
-		"inputs": [],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			}
-		],
-		"name": "OwnableInvalidOwner",
-		"type": "error"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "account",
-				"type": "address"
-			}
-		],
-		"name": "OwnableUnauthorizedAccount",
-		"type": "error"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "admin",
-				"type": "address"
-			}
-		],
-		"name": "AdminAdded",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "admin",
-				"type": "address"
-			}
-		],
-		"name": "AdminRemoved",
-		"type": "event"
 	},
 	{
 		"inputs": [
@@ -138,6 +72,19 @@ export const CONTRACT_ABI=[
 		"inputs": [
 			{
 				"internalType": "uint256",
+				"name": "_suggestionId",
+				"type": "uint256"
+			}
+		],
+		"name": "dislikeSuggestion",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
 				"name": "_postId",
 				"type": "uint256"
 			}
@@ -148,23 +95,17 @@ export const CONTRACT_ABI=[
 		"type": "function"
 	},
 	{
-		"anonymous": false,
 		"inputs": [
 			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "previousOwner",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "newOwner",
-				"type": "address"
+				"internalType": "uint256",
+				"name": "_suggestionId",
+				"type": "uint256"
 			}
 		],
-		"name": "OwnershipTransferred",
-		"type": "event"
+		"name": "likeSuggestion",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
 		"anonymous": false,
@@ -186,6 +127,44 @@ export const CONTRACT_ABI=[
 		"type": "event"
 	},
 	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "postId",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "disliker",
+				"type": "address"
+			}
+		],
+		"name": "PostDisliked",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "postId",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "liker",
+				"type": "address"
+			}
+		],
+		"name": "PostLiked",
+		"type": "event"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "string",
@@ -193,9 +172,9 @@ export const CONTRACT_ABI=[
 				"type": "string"
 			},
 			{
-				"internalType": "string",
+				"internalType": "uint64",
 				"name": "_pinCode",
-				"type": "string"
+				"type": "uint64"
 			},
 			{
 				"internalType": "string",
@@ -209,26 +188,6 @@ export const CONTRACT_ABI=[
 			}
 		],
 		"name": "registerUser",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_admin",
-				"type": "address"
-			}
-		],
-		"name": "removeAdmin",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "renounceOwnership",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -259,17 +218,42 @@ export const CONTRACT_ABI=[
 		"type": "event"
 	},
 	{
+		"anonymous": false,
 		"inputs": [
 			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "suggestionId",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
 				"internalType": "address",
-				"name": "newOwner",
+				"name": "disliker",
 				"type": "address"
 			}
 		],
-		"name": "transferOwnership",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
+		"name": "SuggestionDisliked",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "suggestionId",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "liker",
+				"type": "address"
+			}
+		],
+		"name": "SuggestionLiked",
+		"type": "event"
 	},
 	{
 		"inputs": [
@@ -292,14 +276,32 @@ export const CONTRACT_ABI=[
 	{
 		"inputs": [
 			{
+				"internalType": "uint256",
+				"name": "_suggestionId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "enum LocalGovernancePlatform.SuggestionStatus",
+				"name": "_newStatus",
+				"type": "uint8"
+			}
+		],
+		"name": "updateSuggestionStatus",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "string",
 				"name": "_name",
 				"type": "string"
 			},
 			{
-				"internalType": "string",
+				"internalType": "uint64",
 				"name": "_pinCode",
-				"type": "string"
+				"type": "uint64"
 			},
 			{
 				"internalType": "string",
@@ -337,38 +339,8 @@ export const CONTRACT_ABI=[
 		"type": "event"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "admins",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_page",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_pageSize",
-				"type": "uint256"
-			}
-		],
-		"name": "getPaginatedPosts",
+		"inputs": [],
+		"name": "getAllPosts",
 		"outputs": [
 			{
 				"components": [
@@ -398,6 +370,21 @@ export const CONTRACT_ABI=[
 						"type": "string"
 					},
 					{
+						"internalType": "address[]",
+						"name": "likedBy",
+						"type": "address[]"
+					},
+					{
+						"internalType": "address[]",
+						"name": "dislikedBy",
+						"type": "address[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "suggestionIds",
+						"type": "uint256[]"
+					},
+					{
 						"internalType": "enum LocalGovernancePlatform.PostStatus",
 						"name": "status",
 						"type": "uint8"
@@ -419,30 +406,96 @@ export const CONTRACT_ABI=[
 	{
 		"inputs": [
 			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
+				"internalType": "uint256",
+				"name": "_postId",
+				"type": "uint256"
 			}
 		],
-		"name": "lastPostTimestamp",
+		"name": "getPostDetails",
 		"outputs": [
 			{
+				"internalType": "address",
+				"name": "creator",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "title",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "description",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "imageUrl",
+				"type": "string"
+			},
+			{
 				"internalType": "uint256",
-				"name": "",
+				"name": "likes",
 				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "dislikes",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "suggestionIds",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "enum LocalGovernancePlatform.PostStatus",
+				"name": "status",
+				"type": "uint8"
 			}
 		],
 		"stateMutability": "view",
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "owner",
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_suggestionId",
+				"type": "uint256"
+			}
+		],
+		"name": "getSuggestionDetails",
 		"outputs": [
 			{
 				"internalType": "address",
-				"name": "",
+				"name": "creator",
 				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "postId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "description",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "likes",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "dislikes",
+				"type": "uint256"
+			},
+			{
+				"internalType": "enum LocalGovernancePlatform.SuggestionStatus",
+				"name": "status",
+				"type": "uint8"
 			}
 		],
 		"stateMutability": "view",
@@ -456,54 +509,6 @@ export const CONTRACT_ABI=[
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "postDislikes",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "postLikes",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
 			}
 		],
 		"stateMutability": "view",
@@ -559,30 +564,6 @@ export const CONTRACT_ABI=[
 		"type": "function"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "postSuggestionSubmitted",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"inputs": [],
 		"name": "suggestionCounter",
 		"outputs": [
@@ -590,54 +571,6 @@ export const CONTRACT_ABI=[
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "suggestionDislikes",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "suggestionLikes",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
 			}
 		],
 		"stateMutability": "view",
@@ -698,9 +631,9 @@ export const CONTRACT_ABI=[
 		"name": "users",
 		"outputs": [
 			{
-				"internalType": "address",
-				"name": "walletAddress",
-				"type": "address"
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
 			},
 			{
 				"internalType": "uint64",
@@ -708,24 +641,24 @@ export const CONTRACT_ABI=[
 				"type": "uint64"
 			},
 			{
-				"internalType": "bool",
-				"name": "isVerified",
-				"type": "bool"
-			},
-			{
-				"internalType": "string",
-				"name": "name",
-				"type": "string"
-			},
-			{
 				"internalType": "string",
 				"name": "email",
 				"type": "string"
 			},
 			{
+				"internalType": "address",
+				"name": "walletAddress",
+				"type": "address"
+			},
+			{
 				"internalType": "string",
 				"name": "physicalAddress",
 				"type": "string"
+			},
+			{
+				"internalType": "bool",
+				"name": "isVerified",
+				"type": "bool"
 			}
 		],
 		"stateMutability": "view",
