@@ -1,7 +1,6 @@
 "use client";
 
 import { useOkto, OktoContextType } from "okto-sdk-react";
-import { GoogleLogin, CredentialResponse } from "@react-oauth/google";
 import { useRouter } from "next/navigation";
 import { CONTRACT_ABI, CONTRACT_ADDRESS } from "@/app/lib/constant";
 import { useWriteContract } from "wagmi";

@@ -9,6 +9,9 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "@rainbow-me/rainbowkit/styles.css";
 import { AnonAadhaarProvider } from "@anon-aadhaar/react";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
+import { WagmiProvider } from "wagmi";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -27,10 +30,12 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} text-white bg-black ${geistMono.variable} antialiased`}
       >
-        <AnonAadhaarProvider _useTestAadhaar={true}>
-          <RainbowProvider>{children}</RainbowProvider>
+        <RainbowProvider>
+          <Header />
+          {children}
           <ToastContainer />
-        </AnonAadhaarProvider>
+          <Footer />
+        </RainbowProvider>
       </body>
     </html>
   );

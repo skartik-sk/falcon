@@ -6,7 +6,7 @@ import { LogOut, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { logoutGoogle } from "./okto/utls";
+// import { logoutGoogle } from "./okto/utls";
 import FeedPage from "@/components/feed-page";
 import Leaderboard from "./leaderboard";
 import { motion } from "framer-motion";
@@ -93,7 +93,7 @@ export default function ThreeColumnLayout({
             >
               Leaderboard
             </Button>
-            <Button variant="ghost" onClick={logoutGoogle} className="">
+            <Button variant="ghost" className="">
               Logout <LogOut />
             </Button>
           </nav>
@@ -119,7 +119,7 @@ export default function ThreeColumnLayout({
             Leaderboard
           </Button>
         </div>
-        <Button variant="ghost" onClick={logoutGoogle} className="">
+        <Button variant="ghost" className="">
           Logout <LogOut />
         </Button>
       </nav>
