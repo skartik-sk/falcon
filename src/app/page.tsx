@@ -6,6 +6,7 @@ import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button1";
 import { Card } from "@/components/ui/card1";
 import { Input } from "@/components/ui/input";
+
 import { Accordion, AccordionItem } from "@nextui-org/react";
 import { MessageCircle, Shield, Sparkles, Users } from "lucide-react";
 import MainPage from "@/components/mainpage";

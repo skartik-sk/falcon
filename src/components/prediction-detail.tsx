@@ -44,11 +44,11 @@ export default function PredictionDetail({
         <div className="grid grid-cols-2 gap-4">
           <Button className="w-full bg-green-600 hover:bg-green-700">
             <ArrowUpIcon className="mr-2 h-4 w-4" />
-            Buy Yes
+            Up
           </Button>
           <Button className="w-full bg-red-600 hover:bg-red-700">
             <ArrowDownIcon className="mr-2 h-4 w-4" />
-            Buy No
+           Down
           </Button>
         </div>
         <p className="text-sm text-muted-foreground">{description}</p>

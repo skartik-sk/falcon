@@ -1,3 +1,4 @@
+import { CONTRACT_ABI, CONTRACT_ADDRESS } from "@/app/lib/constant";
 import {
   LogInWithAnonAadhaar,
   useAnonAadhaar,
@@ -6,24 +7,23 @@ import {
 } from "@anon-aadhaar/react";
 import { useEffect } from "react";
 
+
 type Verified = {
   verified: string | null;
   Dis: boolean;
 };
-export default function Home({ verified, Dis }: Verified) {
+export default function Annon({ verified, Dis }: Verified) {
   const [anonAadhaar] = useAnonAadhaar();
-  const [, latestProof] = useProver();
+  const [ latestProof] = useProver();
 
   useEffect(() => {
     console.log("Anon Aadhaar status: ", anonAadhaar.status);
   }, [anonAadhaar]);
-
   return (
     <>
       {!verified && Dis && (
-        <div>
+        <div className="m-64">
           <LogInWithAnonAadhaar nullifierSeed={1234} />
-
           {/* <p>{anonAadhaar?.status}</p> */}
         </div>
       )}

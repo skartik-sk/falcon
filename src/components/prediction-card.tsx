@@ -37,11 +37,11 @@ export default function PredictionCard({
         <div className="grid grid-cols-2 gap-2">
           <Button size="sm" className="w-full bg-green-600 hover:bg-green-700">
             <ArrowUpIcon className="mr-1 h-3 w-3" />
-            Buy Yes
+             Up
           </Button>
           <Button size="sm" className="w-full bg-red-600 hover:bg-red-700">
             <ArrowDownIcon className="mr-1 h-3 w-3" />
-            Buy No
+            Down
           </Button>
         </div>
       </CardContent>

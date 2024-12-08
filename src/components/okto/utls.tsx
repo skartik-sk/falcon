@@ -5,108 +5,29 @@
 import { useOkto } from "okto-sdk-react";
 import { GoogleLogin } from "@react-oauth/google";
 import { useRouter } from "next/navigation";
-// const  { authenticate } = useOkto() as OktoContextType;
-
-// const getWallet = async (auth_token: string) => {
-//   console.log(auth_token);
-//   const url = "https://sandbox-api.okto.tech/api/v1/wallet";
-//   const options = {
-//     method: "GET",
-//     headers: { Authorization: "Bearer YOUR_SECRET_TOKEN" },
-//   };
-
-//   try {
-//     const response = await fetch(url, options);
-//     const data = await response.json();
-//     console.log(data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
-// const Logout = async (auth_token: string) => {
-//   const url = "https://sandbox-api.okto.tech/api/v1/logout";
-//   const options = {
-//     method: "POST",
-//     headers: { Authorization: `Bearer ${auth_token} ` },
-//   };
-
-//   try {
-//     const response = await fetch(url, options);
-//     const data = await response.json();
-//     console.log(data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
-
-// type TransferResponse = {
-//   // Define the expected structure of the API response
-//   status: string;
-//   message?: string;
-//   data?: any; // Replace `any` with a more specific type if known
-// };
-
-// async function executeTokenTransfer(
-//   networkName: string,
-//   tokenAddress: string,
-//   quantity: string,
-//   recipientAddress: string,
-//   auth_token:string
-// ): Promise<TransferResponse> {
-//   const url = "https://sandbox-api.okto.tech/api/v1/transfer/tokens/execute";
-// console.log(auth_token);
-//   const body = JSON.stringify({
-//     network_name: networkName,
-//     token_address: tokenAddress,
-//     quantity: quantity,
-//     recipient_address: recipientAddress,
-//   });
-
-//   const options: RequestInit = {
-//     method: "POST",
-//     headers: {
-//       Authorization: "Bearer YOUR_SECRET_TOKEN", 
-//     },
-//     body: body,
-//   };
-
-//   try {
-//     const response = await fetch(url, options);
-
-//     if (!response.ok) {
-//       throw new Error(`HTTP error! status: ${response.status}`);
-//     }
-
-//     const data: TransferResponse = await response.json();
-//     console.log("Transfer successful:", data);
-//     return data; // Return data for further use
-//   } catch (error) {
-//     console.error("Error executing token transfer:", error);
-//     throw error; // Rethrow error for the caller to handle
-//   }
-// }
-
-// const createWalletOkto = async (auth_token: string) => {
-//   const url = "https://sandbox-api.okto.tech/api/v1/user_from_token";
-//   const options = {
-//     method: "GET",
-//     headers: { Authorization: `Bearer ${auth_token} ` },
-//   };
-
-//   try {
-//     const response = await fetch(url, options);
-//     const data = await response.json();
-//     console.log(data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
-
+import { CONTRACT_ABI, CONTRACT_ADDRESS } from "@/app/lib/constant";
+import {  useWriteContract } from "wagmi";
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 const SignInButton = ({ setAuthToken, authToken, handleLogout }) => {
 
   const rounter = useRouter();
   const  test  = useOkto();
   const authenticate = test?.authenticate;
+  const { 
+    data: hash, 
+    writeContract 
+  } = useWriteContract() 
+
+  async function registerUsers() {
+  
+  writeContract({
+    address: CONTRACT_ADDRESS,
+    abi: CONTRACT_ABI,
+    functionName: 'registerUser',
+    args: ['', '','',''],
+  })
+  console.log(hash);
+}
   const handleGoogleLogin = async (credentialResponse) => {
     console.log("Google login response:", credentialResponse);
     const idToken = credentialResponse.credential;
@@ -118,11 +39,21 @@ const SignInButton = ({ setAuthToken, authToken, handleLogout }) => {
         console.log("Authentication check: ", authResponse);
         setAuthToken(authResponse.auth_token);
         console.log("auth token received", authToken);
+        
+        registerUsers().then((response) => {
+        console.log("User registered: ", response);
+
+        // rounter.push("/anon");
+        
+
+
        
-        rounter.push("/");
+      }).catch((error) => {
+        console.error("Failed to register user: ", error);
       }
-      if (error) {
-        console.error("Authentication error:", error);
+      );
+      } else {
+        console.error("Failed to authenticate: ", error);
       }
     }
   
@@ -159,7 +90,9 @@ const SignInButton = ({ setAuthToken, authToken, handleLogout }) => {
           }
         />
       ) : (
-        <button onClick={onLogoutClick}>Authenticated, Logout</button>
+        <ConnectButton
+         
+        />
       )}
     </div>
         </>
