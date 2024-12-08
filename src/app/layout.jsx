@@ -31,10 +31,12 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} text-white bg-black ${geistMono.variable} antialiased`}
       >
         <RainbowProvider>
-          <Header />
-          {children}
-          <ToastContainer />
-          <Footer />
+          <AnonAadhaarProvider _useTestAadhaar={true}>
+            <Header />
+            {children}
+            <ToastContainer />
+            <Footer />
+          </AnonAadhaarProvider>
         </RainbowProvider>
       </body>
     </html>

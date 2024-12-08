@@ -53,13 +53,13 @@ contract LocalGovernancePlatform is Ownable, ReentrancyGuard {
     mapping(address => User) public users;
     mapping(uint256 => Post) public posts;
     mapping(uint256 => Suggestion) public suggestions;
-    
+
     // Like/Dislike Tracking
     mapping(uint256 => mapping(address => bool)) public postLikes;
     mapping(uint256 => mapping(address => bool)) public postDislikes;
     mapping(uint256 => mapping(address => bool)) public suggestionLikes;
     mapping(uint256 => mapping(address => bool)) public suggestionDislikes;
-    
+
     // Additional Control Mappings
     mapping(address => bool) public admins;
     mapping(uint256 => mapping(address => bool)) public postSuggestionSubmitted;
@@ -77,13 +77,20 @@ contract LocalGovernancePlatform is Ownable, ReentrancyGuard {
     // Events
     event UserRegistered(address indexed userAddress, string name);
     event PostCreated(uint256 indexed postId, address indexed creator);
-    event SuggestionAdded(uint256 indexed suggestionId, uint256 indexed postId, address indexed creator);
+    event SuggestionAdded(
+        uint256 indexed suggestionId,
+        uint256 indexed postId,
+        address indexed creator
+    );
     event AdminAdded(address indexed admin);
     event AdminRemoved(address indexed admin);
 
     // Modifiers
     modifier onlyRegisteredUser() {
-        require(bytes(users[msg.sender].name).length != 0, "User not registered");
+        require(
+            bytes(users[msg.sender].name).length != 0,
+            "User not registered"
+        );
         _;
     }
 
@@ -98,7 +105,10 @@ contract LocalGovernancePlatform is Ownable, ReentrancyGuard {
     }
 
     modifier suggestionExists(uint256 _suggestionId) {
-        require(_suggestionId > 0 && _suggestionId <= suggestionCounter, "Suggestion does not exist");
+        require(
+            _suggestionId > 0 && _suggestionId <= suggestionCounter,
+            "Suggestion does not exist"
+        );
         _;
     }
 
@@ -113,8 +123,14 @@ contract LocalGovernancePlatform is Ownable, ReentrancyGuard {
         string memory _email,
         string memory _physicalAddress
     ) public {
-        require(bytes(users[msg.sender].name).length == 0, "User already registered");
-        require(bytes(_name).length > 0 && bytes(_name).length <= MAX_NAME_LENGTH, "Invalid name");
+        require(
+            bytes(users[msg.sender].name).length == 0,
+            "User already registered"
+        );
+        require(
+            bytes(_name).length > 0 && bytes(_name).length <= MAX_NAME_LENGTH,
+            "Invalid name"
+        );
         require(_validateEmail(_email), "Invalid email");
 
         users[msg.sender] = User({
@@ -136,10 +152,10 @@ contract LocalGovernancePlatform is Ownable, ReentrancyGuard {
         string memory _physicalAddress
     ) public onlyRegisteredUser {
         require(
-            bytes(_name).length > 0 && 
-            bytes(_name).length <= MAX_NAME_LENGTH &&
-            bytes(_email).length > 0 && 
-            _validateEmail(_email),
+            bytes(_name).length > 0 &&
+                bytes(_name).length <= MAX_NAME_LENGTH &&
+                bytes(_email).length > 0 &&
+                _validateEmail(_email),
             "Invalid input"
         );
 
@@ -157,13 +173,13 @@ contract LocalGovernancePlatform is Ownable, ReentrancyGuard {
         string memory _imageUrl
     ) public onlyRegisteredUser nonReentrant returns (uint256) {
         require(
-            block.timestamp >= lastPostTimestamp[msg.sender] + POST_COOLDOWN, 
+            block.timestamp >= lastPostTimestamp[msg.sender] + POST_COOLDOWN,
             "Post cooldown active"
         );
         require(
-            bytes(_title).length > 0 && 
-            bytes(_description).length > 0 && 
-            bytes(_description).length <= MAX_DESCRIPTION_LENGTH,
+            bytes(_title).length > 0 &&
+                bytes(_description).length > 0 &&
+                bytes(_description).length <= MAX_DESCRIPTION_LENGTH,
             "Invalid post content"
         );
 
@@ -185,16 +201,20 @@ contract LocalGovernancePlatform is Ownable, ReentrancyGuard {
     }
 
     // Efficient Like/Dislike Mechanisms
-    function likePost(uint256 _postId) public onlyRegisteredUser postExists(_postId) {
+    function likePost(
+        uint256 _postId
+    ) public onlyRegisteredUser postExists(_postId) {
         require(!postLikes[_postId][msg.sender], "Already liked");
-        
+
         postLikes[_postId][msg.sender] = true;
         postDislikes[_postId][msg.sender] = false;
     }
 
-    function dislikePost(uint256 _postId) public onlyRegisteredUser postExists(_postId) {
+    function dislikePost(
+        uint256 _postId
+    ) public onlyRegisteredUser postExists(_postId) {
         require(!postDislikes[_postId][msg.sender], "Already disliked");
-        
+
         postDislikes[_postId][msg.sender] = true;
         postLikes[_postId][msg.sender] = false;
     }
@@ -205,12 +225,12 @@ contract LocalGovernancePlatform is Ownable, ReentrancyGuard {
         string memory _description
     ) public onlyRegisteredUser postExists(_postId) returns (uint256) {
         require(
-            !postSuggestionSubmitted[_postId][msg.sender], 
+            !postSuggestionSubmitted[_postId][msg.sender],
             "Already submitted suggestion"
         );
         require(
-            bytes(_description).length > 0 && 
-            bytes(_description).length <= MAX_DESCRIPTION_LENGTH,
+            bytes(_description).length > 0 &&
+                bytes(_description).length <= MAX_DESCRIPTION_LENGTH,
             "Invalid suggestion description"
         );
 
@@ -245,7 +265,7 @@ contract LocalGovernancePlatform is Ownable, ReentrancyGuard {
 
     // Status Update with Enhanced Control
     function updatePostStatus(
-        uint256 _postId, 
+        uint256 _postId,
         PostStatus _newStatus
     ) public onlyAdmin postExists(_postId) {
         require(_newStatus != posts[_postId].status, "Same status");
@@ -254,50 +274,57 @@ contract LocalGovernancePlatform is Ownable, ReentrancyGuard {
 
     // Utility and View Functions
     function getPaginatedPosts(
-        uint256 _page, 
+        uint256 _page,
         uint256 _pageSize
     ) public view returns (Post[] memory) {
         uint256 start = (_page - 1) * _pageSize;
         uint256 end = start + _pageSize;
-        
+
         require(start < postCounter, "Page out of bounds");
-        
-        uint256 resultSize = end > postCounter ? postCounter - start : _pageSize;
+
+        uint256 resultSize = end > postCounter
+            ? postCounter - start
+            : _pageSize;
         Post[] memory paginatedPosts = new Post[](resultSize);
-        
+
         for (uint256 i = 0; i < resultSize; i++) {
             paginatedPosts[i] = posts[start + i + 1];
         }
-        
+
         return paginatedPosts;
     }
 
     // Internal Utility Functions
     function _validateEmail(string memory _email) internal pure returns (bool) {
         bytes memory byteEmail = bytes(_email);
-        return byteEmail.length > 3 && 
-               bytes(_email)[0] != '@' && 
-               bytes(_email)[byteEmail.length - 1] != '@';
+        return
+            byteEmail.length > 3 &&
+            bytes(_email)[0] != "@" &&
+            bytes(_email)[byteEmail.length - 1] != "@";
     }
 
-    function _stringToUint64(string memory _value) internal pure returns (uint64) {
+    function _stringToUint64(
+        string memory _value
+    ) internal pure returns (uint64) {
         return uint64(stringToUint(_value));
     }
 
-    function stringToUint(string memory _value) internal pure returns (uint256) {
+    function stringToUint(
+        string memory _value
+    ) internal pure returns (uint256) {
         bytes memory bytesValue = bytes(_value);
         uint256 result = 0;
-        
+
         for (uint256 i = 0; i < bytesValue.length; i++) {
             uint256 digit = uint256(uint8(bytesValue[i]));
-            
+
             if (digit >= 48 && digit <= 57) {
                 result = result * 10 + (digit - 48);
             } else {
                 revert("Invalid number string");
             }
         }
-        
+
         return result;
     }
 }

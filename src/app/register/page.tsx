@@ -16,7 +16,7 @@ const verify = async () => {
         address: CONTRACT_ADDRESS,
         abi: CONTRACT_ABI,
         functionName: 'registerUser',
-        args: ['', '','',''],
+        args: ["kartik", 34,'345','345'],
       })
      
 }
