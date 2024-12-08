@@ -25,7 +25,7 @@ const MainPage = ({ setAuthToken, authToken, handleLogout }) => {
 
   return (
     <>
-    <Header setAuthToken={setAuthToken} authToken={authToken} handleLogout={handleLogout} />
+    <Header  />
   
     
     </>

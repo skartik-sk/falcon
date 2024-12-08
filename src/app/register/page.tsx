@@ -3,8 +3,10 @@ import { Button } from '@/components/ui/button'
 import React, { useEffect } from 'react'
 import { useWriteContract } from 'wagmi'
 import { CONTRACT_ABI, CONTRACT_ADDRESS } from '../lib/constant'
+import { useRouter } from 'next/navigation';
 
 const Page = () => {
+  const router = useRouter()
     const { 
         data: hash, 
         writeContract 
@@ -22,6 +24,11 @@ const verify = async () => {
 }
 useEffect(() => {
     console.log(hash);
+    if(hash){
+        console.log('Transaction hash:', hash)
+        router.push('/feed')
+
+    }
 }
 , [hash]);
 

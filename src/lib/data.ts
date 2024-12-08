@@ -7,7 +7,6 @@ export interface Prediction {
   description: string;
   imageUrl: string;
 }
-
 export const predictions: Prediction[] = [
   {
     id: "1",
@@ -20,11 +19,11 @@ export const predictions: Prediction[] = [
   },
   {
     id: "2",
-    question: "Issue with female security ",
+    question: "Will there be significant progress in female security measures in urban areas by the end of 2024?",
     chance: 42,
     volume: "$5m",
     comments: 2456,
-    description: "I faced an issue in regular life where I was not able to maintain my security.",
+    description: "This prediction focuses on the implementation of advanced security measures for women in metropolitan areas, considering both governmental initiatives and societal changes.",
     imageUrl: "https://media.istockphoto.com/id/1384434228/vector/tiny-woman-holding-online-virus-protection-shield.jpg?s=612x612&w=0&k=20&c=SxMsN0HzMtqSe6VFSbCgDK59gD3qg7_FHAKjxa8hJeI=",
   },
   {
@@ -54,6 +53,15 @@ export const predictions: Prediction[] = [
     description: "This prediction is about the advancement of artificial intelligence, specifically whether AI will be able to convincingly pass as human in conversation. It considers current AI capabilities, ongoing research, and the challenges of natural language processing.",
     imageUrl: "/placeholder.svg?height=400&width=800",
   },
+  {
+    id: "6",
+    question: "Will the global adoption of renewable energy sources surpass 40% by 2024?",
+    chance: 50,
+    volume: "$2.7m",
+    comments: 1543,
+    description: "This prediction examines the global transition to renewable energy, factoring in government policies, technological advancements, and economic incentives.",
+    imageUrl: "/placeholder.svg?height=400&width=800",
+  }
 ];
 
 export function getPrediction(id: string): Prediction | undefined {

@@ -38,20 +38,6 @@ export default function Page() {
         </ThreeColumnLayout>
       </div>
 
-      <div className="z-10 absolute inset-0">
-        {" "}
-        <div className="relative min-h-screen text-white">
-          {/* Gradient Container */}
-          <div className="absolute inset-0 z-10"></div>
-          {/* Set gradients behind content */}
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-900/50 via-black to-blue-900/30" />
-          <div className="absolute inset-0">
-            <div className="h-full w-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/20 via-black to-transparent" />
-          </div>
-        </div>
-        {/* Content */}
-        <div className="relative z-20"></div>
-      </div>
     </div>
   );
 }

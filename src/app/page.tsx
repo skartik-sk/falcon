@@ -2,16 +2,16 @@
 
 import CommunitySection from "@/components/community";
 import { FAQSection } from "@/components/faqsection";
-import { FeaturesSectionDemo } from "@/components/featuresection";
+// import { FeaturesSectionDemo } from "@/components/featuresection";
 import Footer from "@/components/footer";
-import { BackgroundLines } from "@/components/ui/background-lines";
+// import { BackgroundLines } from "@/components/ui/background-lines";
 import { Button } from "@/components/ui/button1";
 import { Card } from "@/components/ui/card1";
 import { Input } from "@/components/ui/input";
 import { MessageCircle, Shield, Sparkles } from "lucide-react";
 import MainPage from "@/components/mainpage";
 import Link from "next/link";
-import { GoogleOAuthProvider } from "@react-oauth/google";
+// import { GoogleOAuthProvider } from "@react-oauth/google";
 
 import { useState } from "react";
 import Annon from "@/components/Anon";

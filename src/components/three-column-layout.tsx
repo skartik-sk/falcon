@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 // import { logoutGoogle } from "./okto/utls";
+// import { logoutGoogle } from "./okto/utls";
 import FeedPage from "@/components/feed-page";
 import Leaderboard from "./leaderboard";
 import { motion } from "framer-motion";
@@ -59,70 +60,7 @@ export default function ThreeColumnLayout({
 
   return (
     <div className={cn("flex min-h-screen text-white", className)}>
-      {/* Mobile Menu Button */}
-      <Sheet>
-        <SheetTrigger
-          asChild
-          className="lg:hidden fixed left-4 top-20 z-8 text-white border-none"
-        >
-          <Button variant="outline" size="icon">
-            <Menu className="h-4 w-4" />
-            <span className="sr-only">Toggle navigation menu</span>
-          </Button>
-        </SheetTrigger>
-        <SheetContent
-          side="left"
-          className="w-[240px] sm:w-[300px] text-white "
-        >
-          <nav className="flex flex-col gap-4">
-            <Button variant="ghost" onClick={() => handleTabChange("Home")}>
-              Home
-            </Button>
-            <Button variant="ghost" onClick={() => handleTabChange("Markets")}>
-              Markets
-            </Button>
-            <Button
-              variant="ghost"
-              onClick={() => handleTabChange("Portfolio")}
-            >
-              Portfolio
-            </Button>
-            <Button
-              variant="ghost"
-              onClick={() => handleTabChange("Leaderboard")}
-            >
-              Leaderboard
-            </Button>
-            <Button variant="ghost" className="">
-              Logout <LogOut />
-            </Button>
-          </nav>
-        </SheetContent>
-      </Sheet>
-
-      {/* Left Sidebar - Navigation */}
-      <nav className="hidden h-[85vh] lg:fixed mt-20 lg:flex w-[240px] flex-col justify-between border-r p-6 text-white bg-gradient-to-br from-purple-900/50 via-black to-blue-900/30">
-        <div className="flex flex-col gap-4">
-          <Button variant="ghost" className="justify-start">
-            Home
-          </Button>
-          <Button variant="ghost" onClick={() => handleTabChange("Markets")}>
-            Markets
-          </Button>
-          <Button variant="ghost" onClick={() => handleTabChange("Portfolio")}>
-            Portfolio
-          </Button>
-          <Button
-            variant="ghost"
-            onClick={() => handleTabChange("Leaderboard")}
-          >
-            Leaderboard
-          </Button>
-        </div>
-        <Button variant="ghost" className="">
-          Logout <LogOut />
-        </Button>
-      </nav>
+      
 
       {/* Main Content Area */}
       <main className="flex-1 mt-24 px-4 py-6 lg:px-8 overflow-y-auto max-h-[100vh] ">

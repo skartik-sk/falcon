@@ -3,15 +3,12 @@
 import Link from "next/link";
 
 
-import { useEffect, useState } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const Header: React.FC<HeaderProps> = ({
-  setAuthToken,
-  authToken,
-  handleLogout,
+
 }) => {
-  const [verified, setVerified] = useState<string | null>(null);
+
 
   // useEffect(() => {
   //   let anon = localStorage.getItem("anonAadhaar");
