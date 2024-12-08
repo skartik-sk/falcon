@@ -1,17 +1,16 @@
 "use client";
 
-// import { useWalletMultiButton } from '@solana/wallet-adapter-base-ui';
-
-import { useOkto } from "okto-sdk-react";
-import { GoogleLogin } from "@react-oauth/google";
+import { useOkto, OktoContextType } from "okto-sdk-react";
+import { GoogleLogin, CredentialResponse } from "@react-oauth/google";
 import { useRouter } from "next/navigation";
-// const  { authenticate } = useOkto() as OktoContextType;
+import { signOut } from "next-auth/react";
+import Error from "next/error";
+import React from "react";
 
-export const logoutGoogle = async () => {
+export const logoutGoogle = async (): Promise<void> => {
   try {
-    // Only run on client side
     if (typeof window !== "undefined") {
-      // Remove next-auth session token cookie
+      // Remove the session token cookie
       document.cookie =
         "next-auth.session-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" +
         window.location.hostname;
@@ -27,163 +26,99 @@ export const logoutGoogle = async () => {
   }
 };
 
-const getWallet = async (auth_token: string) => {
-  console.log(auth_token);
+const getWallet = async (authToken: string): Promise<void> => {
   const url = "https://sandbox-api.okto.tech/api/v1/wallet";
   const options = {
     method: "GET",
-    headers: { Authorization: "Bearer YOUR_SECRET_TOKEN" },
+    headers: { Authorization: `Bearer ${authToken}` },
   };
 
   try {
     const response = await fetch(url, options);
     const data = await response.json();
-    console.log(data);
+    console.log("Wallet data:", data);
   } catch (error) {
-    console.error(error);
+    console.error("Error fetching wallet:", error);
   }
 };
-const Logout = async (auth_token: string) => {
+
+const Logout = async (authToken: string): Promise<void> => {
   const url = "https://sandbox-api.okto.tech/api/v1/logout";
   const options = {
     method: "POST",
-    headers: { Authorization: `Bearer ${auth_token} ` },
+    headers: { Authorization: `Bearer ${authToken}` },
   };
 
-//   try {
-//     const response = await fetch(url, options);
-//     const data = await response.json();
-//     console.log(data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
+  try {
+    const response = await fetch(url, options);
+    const data = await response.json();
+    console.log("Logout successful:", data);
+  } catch (error) {
+    console.error("Logout error:", error);
+  }
+};
 
-// type TransferResponse = {
-//   // Define the expected structure of the API response
-//   status: string;
-//   message?: string;
-//   data?: any; // Replace `any` with a more specific type if known
-// };
+interface SignInButtonProps {
+  setAuthToken: (token: string) => void;
+  authToken: string | null;
+  handleLogout: () => void;
+}
 
-// async function executeTokenTransfer(
-//   networkName: string,
-//   tokenAddress: string,
-//   quantity: string,
-//   recipientAddress: string,
-//   auth_token:string
-// ): Promise<TransferResponse> {
-//   const url = "https://sandbox-api.okto.tech/api/v1/transfer/tokens/execute";
-// console.log(auth_token);
-//   const body = JSON.stringify({
-//     network_name: networkName,
-//     token_address: tokenAddress,
-//     quantity: quantity,
-//     recipient_address: recipientAddress,
-//   });
+const SignInButton: React.FC<SignInButtonProps> = ({
+  setAuthToken,
+  authToken,
+  handleLogout,
+}) => {
+  const router = useRouter();
+  // const { authenticate } = useOkto() as OktoContextType;
 
-//   const options: RequestInit = {
-//     method: "POST",
-//     headers: {
-//       Authorization: "Bearer YOUR_SECRET_TOKEN", 
-//     },
-//     body: body,
-//   };
-
-//   try {
-//     const response = await fetch(url, options);
-
-//     if (!response.ok) {
-//       throw new Error(`HTTP error! status: ${response.status}`);
-//     }
-
-//     const data: TransferResponse = await response.json();
-//     console.log("Transfer successful:", data);
-//     return data; // Return data for further use
-//   } catch (error) {
-//     console.error("Error executing token transfer:", error);
-//     throw error; // Rethrow error for the caller to handle
-//   }
-// }
-
-// const createWalletOkto = async (auth_token: string) => {
-//   const url = "https://sandbox-api.okto.tech/api/v1/user_from_token";
-//   const options = {
-//     method: "GET",
-//     headers: { Authorization: `Bearer ${auth_token} ` },
-//   };
-
-//   try {
-//     const response = await fetch(url, options);
-//     const data = await response.json();
-//     console.log(data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
-
-const SignInButton = ({ setAuthToken, authToken, handleLogout }) => {
-
-  const rounter = useRouter();
-  const  test  = useOkto();
-  const authenticate = test?.authenticate;
-  const handleGoogleLogin = async (credentialResponse) => {
+  const handleGoogleLogin = async (credentialResponse: CredentialResponse) => {
     console.log("Google login response:", credentialResponse);
     const idToken = credentialResponse.credential;
-    console.log("google idtoken: ", idToken);
-    if (authenticate) {
-     
-    authenticate(idToken, async (authResponse, error) => {
-      if (authResponse) {
-        console.log("Authentication check: ", authResponse);
-        setAuthToken(authResponse.auth_token);
-        console.log("auth token received", authToken);
-       
-        rounter.push("/");
-      }
-      if (error) {
-        console.error("Authentication error:", error);
-      }
-    }
-  
-  );
-
-    }
-    else{
-      console.error("authenticate is not defined");
+    if (idToken && authenticate) {
+      authenticate(
+        idToken,
+        async (
+          authResponse: { auth_token: string } | null,
+          error: Error | null
+        ) => {
+          if (authResponse) {
+            console.log("Authentication successful:", authResponse);
+            setAuthToken(authResponse.auth_token);
+            router.push("/");
+          } else if (error) {
+            console.error("Authentication error:", error);
+          }
+        }
+      );
+    } else {
+      console.error("Authentication failed or not defined");
     }
   };
-  // const signInWithGoogle = async () => {
-  //   // onConnect();
-  //   await signIn("google"); // Redirect after sign-in
-  // };
- 
-  const onLogoutClick = () => {
-    handleLogout(); // Clear the authToken
-    rounter.push('/'); // Navigate back to the login page
+
+  const onLogoutClick = (): void => {
+    handleLogout();
+    router.push("/");
   };
-
-
 
   return (
-    <><div>
+    <div>
       {!authToken ? (
         <GoogleLogin
           onSuccess={handleGoogleLogin}
-          onError={ (error) => {
-            console.log("Login Failed", error);
-          }}
-          useOneTap
-          promptMomentNotification={(notification) =>
-            console.log("Prompt moment notification:", notification)
+          onError={(error: Error) =>
+            console.error("Google login failed:", error)
           }
+          useOneTap
+          promptMomentNotification={(notification: {
+            isDisplayMoment: boolean;
+          }) => console.log("Prompt moment notification:", notification)}
         />
       ) : (
         <button onClick={onLogoutClick}>Authenticated, Logout</button>
       )}
     </div>
-        </>
-   
   );
 };
+
 export default SignInButton;

@@ -19,6 +19,7 @@
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-progress": "^1.1.0",
     "@radix-ui/react-slot": "^1.1.0",
+    "@react-oauth/google": "^0.12.1",
     "@tabler/icons-react": "^3.24.0",
     "axios": "^1.7.9",
     "class-variance-authority": "^0.7.1",

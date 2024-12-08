@@ -11,7 +11,6 @@ import {
 import { Progress } from "@/components/ui/progress";
 import { Prediction } from "@/lib/data";
 import Image from "next/image";
-
 type PredictionCardProps = Prediction;
 
 export default function PredictionCard({
