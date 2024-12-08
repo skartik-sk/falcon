@@ -1,4 +1,3 @@
-Here’s the updated README with the project name changed to **AnnonyShare**:
 
 ---
 
