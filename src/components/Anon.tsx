@@ -1,3 +1,4 @@
+"use client";
 import {
   LogInWithAnonAadhaar,
   useAnonAadhaar,
@@ -6,11 +7,7 @@ import {
 } from "@anon-aadhaar/react";
 import { useEffect } from "react";
 
-type Verified = {
-  verified: string | null;
-  Dis: boolean;
-};
-export default function Home({ verified, Dis }: Verified) {
+export default function Home() {
   const [anonAadhaar] = useAnonAadhaar();
   const [, latestProof] = useProver();
 
@@ -20,21 +17,21 @@ export default function Home({ verified, Dis }: Verified) {
 
   return (
     <>
-      {!verified && Dis && (
-        <div>
-          <LogInWithAnonAadhaar
-            fieldsToReveal={[
-              "revealAgeAbove18",
-              "revealPinCode",
-              "revealState",
-              "revealGender",
-            ]}
-            nullifierSeed={1234}
-          />
-
-          {/* <p>{anonAadhaar?.status}</p> */}
-        </div>
-      )}
+      <div>
+        <LogInWithAnonAadhaar nullifierSeed={1234} />
+        <p>{anonAadhaar?.status}</p>
+      </div>
+      <div>
+        {/* Render the proof if generated and valid */}
+        {anonAadhaar?.status === "logged-in" && (
+          <>
+            <p>✅ Proof is valid</p>
+            {latestProof && (
+              <AnonAadhaarProof code={JSON.stringify(latestProof, null, 2)} />
+            )}
+          </>
+        )}
+      </div>
     </>
   );
 }

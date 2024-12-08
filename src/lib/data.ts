@@ -20,12 +20,12 @@ export const predictions: Prediction[] = [
   },
   {
     id: "2",
-    question: "Will Trump win the 2024 US Presidential Election?",
+    question: "Issue with female security ",
     chance: 42,
     volume: "$5m",
     comments: 2456,
-    description: "This prediction focuses on the potential outcome of the 2024 US Presidential Election, specifically regarding former President Donald Trump's chances of winning. It considers factors such as political climate, voter sentiment, and campaign strategies.",
-    imageUrl: "/placeholder.svg?height=400&width=800",
+    description: "I faced an issue in regular life where I was not able to maintain my security.",
+    imageUrl: "https://media.istockphoto.com/id/1384434228/vector/tiny-woman-holding-online-virus-protection-shield.jpg?s=612x612&w=0&k=20&c=SxMsN0HzMtqSe6VFSbCgDK59gD3qg7_FHAKjxa8hJeI=",
   },
   {
     id: "3",

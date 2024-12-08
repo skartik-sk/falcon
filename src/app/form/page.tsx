@@ -1,14 +1,21 @@
 "use client"
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Menu } from 'lucide-react'
+import { CONTRACT_ABI, CONTRACT_ADDRESS } from '../lib/constant'
+import { useWriteContract } from 'wagmi'
 
 export default function BlackWhiteForm() {
+  const [file, setFile] = useState<File | null>(null);
+  const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(null);
+  const [response, setResponse] = useState<any>(null);
+  const [blobContent, setBlobContent] = useState('');
+
   const [formData, setFormData] = useState({
     title: '',
     image: '',
@@ -20,11 +27,71 @@ export default function BlackWhiteForm() {
     setFormData(prev => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleStoreBlob = async () => {
+    try {
+      let body: string | Blob = blobContent;
+      let contentType = 'text/plain';
+
+      if (file) {
+        body = file;
+        contentType = file.type;
+      }
+
+      const response = await fetch(`https://publisher.walrus-testnet.walrus.space/v1/store`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': contentType,
+        },
+        body,
+      });
+      const result = await response.json();
+      setResponse(result);
+
+      if (file) {
+        const imageUrl = URL.createObjectURL(file);
+        setUploadedImageUrl(imageUrl);
+      }
+    
+    } 
+
+    catch (error) {
+
+      if (error instanceof Error) {
+        setResponse({ error: error.message });
+      } else {
+        setResponse({ error: 'An unknown error occurred' });
+      }
+    }finally{
+     return true
+    }
+  };
+  const { 
+    data: hash, 
+    writeContract 
+  } = useWriteContract() 
+
+  const  handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    const blog = await handleStoreBlob();
+    console.log(blog)
+
+    
+  writeContract({
+    address: CONTRACT_ADDRESS,
+    abi: CONTRACT_ABI,
+    functionName: 'createPost',
+    args: [formData.title," imgurl" , formData.description],
+  })
+  
     console.log('Form submitted:', formData)
     // Here you would typically send the data to an API
   }
+useEffect(() => {
+  if (hash) {
+    console.log('Transaction hash:', hash)
+  }
+}
+, [hash])
 
   return (
     <>
@@ -100,14 +167,15 @@ export default function BlackWhiteForm() {
 
           <div className="space-y-2">
             <Label htmlFor="image" className="text-white">Image URL</Label>
-            <Input
-              id="image"
-              name="image"
-              value={formData.image}
-              onChange={handleChange}
-              className="bg-gray-800 border-gray-700 text-white"
-              placeholder="Enter image URL"
-            />
+            {!file?
+              <input
+          type="file"
+          onChange={(e) => setFile(e.target.files ? e.target.files[0] : null)}
+          className='text-black'
+        />:
+        <div>file Uploaded</div>
+            }
+            
           </div>
 
           <div className="space-y-2">
