@@ -80,7 +80,7 @@ export default function BlackWhiteForm() {
     address: CONTRACT_ADDRESS,
     abi: CONTRACT_ABI,
     functionName: 'createPost',
-    args: [formData.title," imgurl" , formData.description],
+    args: [formData.title,uploadedImageUrl , formData.description],
   })
   
     console.log('Form submitted:', formData)

@@ -90,7 +90,7 @@ export default function Home() {
                         size="lg"
                         className="bg-gradient-to-r rounded from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
                       >
-                        <Annon verified={'not'} Dis ={true}/>
+                        <Annon verified="logged-out" Dis ={true}/>
                       </Button>
                    <Link href="/register">
                     <Button

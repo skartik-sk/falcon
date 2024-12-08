@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} text-white bg-black ${geistMono.variable} antialiased`}
       >
-        <AnonAadhaarProvider _useTestAadhaar={true}>
+        <AnonAadhaarProvider _useTestAadhaar={true} >
           <RainbowProvider>{children}</RainbowProvider>
           <ToastContainer />
         </AnonAadhaarProvider>
