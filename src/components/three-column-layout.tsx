@@ -63,7 +63,7 @@ export default function ThreeColumnLayout({
       <Sheet>
         <SheetTrigger
           asChild
-          className="lg:hidden fixed left-4 top-20 z-8 text-white  border-none"
+          className="lg:hidden fixed left-4 top-20 z-8 text-white border-none"
         >
           <Button variant="outline" size="icon">
             <Menu className="h-4 w-4" />
@@ -101,9 +101,9 @@ export default function ThreeColumnLayout({
       </Sheet>
 
       {/* Left Sidebar - Navigation */}
-      <nav className="hidden mt-24 items-start lg:flex w-[240px] flex-col  border-[#c0c0c023] border-r-[2px] p-6 text-white ">
-        <div className="flex flex-col items-start mb-[22rem] gap-4">
-          <Button variant="ghost" onClick={() => handleTabChange("Home")}>
+      <nav className="hidden h-[85vh] lg:fixed mt-20 lg:flex w-[240px] flex-col justify-between border-r p-6 text-white bg-gradient-to-br from-purple-900/50 via-black to-blue-900/30">
+        <div className="flex flex-col gap-4">
+          <Button variant="ghost" className="justify-start">
             Home
           </Button>
           <Button variant="ghost" onClick={() => handleTabChange("Markets")}>

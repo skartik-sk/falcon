@@ -24,6 +24,13 @@ export default function PredictionCard({
 }: PredictionCardProps) {
   return (
     <Link href={`/prediction/${id}`} className="block w-full h-full">
+    <Card className="w-full h-full text-white bg-gradient-to-br from-purple-900/50 via-black to-blue-900/30 hover:shadow-md transition-shadow duration-200 flex flex-col">
+      <CardHeader className="pb-2">
+        <div className="flex items-start justify-between">
+          <h3 className="text-lg font-semibold">{question}</h3>
+          <div className="text-right">
+            <div className="text-xl font-bold">{chance}%</div>
+            <div className="text-xs text-muted-foreground">chance</div>
       <Card className="w-full h-full text-white bg-black hover:shadow-md transition-shadow duration-200 flex flex-col">
         <CardHeader className="pb-2">
           <div className="flex items-start justify-between">

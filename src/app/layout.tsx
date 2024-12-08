@@ -1,9 +1,8 @@
 "use client";
+
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import SessionProviderComponent from "@/providers/SessionProviderComponent";
-import Header from "@/components/header";
 // import { AnonAadhaarProvider } from "@anon-aadhaar/react";
 import { useState } from "react";
 import Footer from "@/components/footer";
@@ -18,13 +17,14 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
+
 export default function RootLayout({
   children,
   session,
 }: Readonly<{
   children: React.ReactNode;
-  session: any;
 }>) {
+
   return (
     <html lang="en">
       <body

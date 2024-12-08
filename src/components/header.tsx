@@ -1,13 +1,12 @@
 "use client";
-
 import Link from "next/link";
 import SignInButton from "@/components/okto/utls";
 import Anon from "./Anon";
 import { useEffect, useState } from "react";
 
-const Header = () => {
-  const [verified, setVerified] = useState<string | null>(null);
-  const [dis, setDis] = useState(false);
+
+const Header = ({ setAuthToken, authToken, handleLogout }) => {
+ 
 
   useEffect(() => {
     let anon = localStorage.getItem("anonAadhaar");
@@ -34,8 +33,7 @@ const Header = () => {
           </div>
         </div>
         <div className="flex flex-col-reverse justify-center items-center sm:flex sm:flex-row gap-2 right-0">
-          {!verified && <Anon verified={verified} Dis={dis} />}
-          <SignInButton setDis={setDis} verified={verified} />
+        <SignInButton setAuthToken={setAuthToken} authToken={authToken} handleLogout={handleLogout}/>
         </div>
       </div>
     </nav>
