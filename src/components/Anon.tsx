@@ -9,7 +9,7 @@ import { useEffect } from "react";
 
 export default function Home() {
   const [anonAadhaar] = useAnonAadhaar();
-  const [, latestProof] = useProver();
+  const [latestProof] = useProver();
 
   useEffect(() => {
     console.log("Anon Aadhaar status: ", anonAadhaar.status);
