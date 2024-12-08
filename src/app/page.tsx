@@ -24,19 +24,16 @@ export default function Home() {
   };
   return (
     <>
-      <GoogleOAuthProvider
-        clientId={
-          "1043490850112-1tq082boavjlrovfooila737opscklkv.apps.googleusercontent.com"
-        }
-      >
-        <div>
-          <MainPage
-            setAuthToken={setAuthToken}
-            authToken={authToken}
-            handleLogout={handleLogout}
-          />
+     {/* <GoogleOAuthProvider clientId = {'1043490850112-1tq082boavjlrovfooila737opscklkv.apps.googleusercontent.com' }>
+    <OktoProvider apiKey={"02a1ac80-683f-4d32-b3c4-cb7101f9e2f3"} buildType={BuildType.SANDBOX}> */}
+      <div>
 
-          {/* <ThreeColumnLayout>
+       <MainPage setAuthToken={setAuthToken} authToken={authToken} handleLogout={handleLogout}  />
+       
+      
+  
+    
+      {/* <ThreeColumnLayout>
 
         <FeedPage />
       </ThreeColumnLayout> */}
@@ -49,39 +46,63 @@ export default function Home() {
                   <div className="h-full w-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/20 via-black to-transparent" />
                 </div>
 
-                {/* Content */}
-                <div className="relative pt-40 ">
-                  <main className="container mx-auto pt-16  ">
-                    <div className="text-center pb-20 space-y-8">
-                      <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight">
-                        Share your problems
-                        <span className="block bg-gradient-to-r from-purple-400 via-blue-400 to-green-400 bg-clip-text text-transparent">
-                          Anonymously & Securely
-                        </span>
-                      </h1>
-                      <p className="mx-auto max-w-2xl text-lg sm:text-xl text-gray-300">
-                        A decentralized platform where you can share your
-                        thoughts, experiences, and problems without revealing
-                        your identity. Powered by blockchain technology.
-                      </p>
-                      <div className="flex justify-center gap-4">
-                        <Link href={"/feed"}>
-                          <Button
-                            size="lg"
-                            className="bg-gradient-to-r rounded from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
-                          >
-                            Start Sharing
-                          </Button>
-                        </Link>
-                        <Button
-                          size="lg"
-                          variant="outline"
-                          className="border-purple-700 rounded text-white bg-purple-950/50"
-                        >
-                          Learn More
-                        </Button>
-                      </div>
-                    </div>
+            {/* Content */}
+            <div className="relative pt-40 ">
+              {/* <header className="px-4 lg:px-8 h-16 flex items-center justify-between">
+                <div className="text-xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+                  AnonyShare
+                </div>
+                <nav className="flex gap-4">
+                  <Button
+                    variant="ghost"
+                    className="text-gray-300 hover:text-white"
+                  >
+                    About
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    className="text-gray-300 hover:text-white"
+                  >
+                    Features
+                  </Button>
+                  <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700">
+                    Connect Wallet
+                  </Button>
+                </nav>
+              </header> */}
+
+              <main className="container mx-auto pt-16  ">
+                <div className="text-center pb-20 space-y-8">
+                  <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight">
+                    Share your problems
+                    <span className="block bg-gradient-to-r from-purple-400 via-blue-400 to-green-400 bg-clip-text text-transparent">
+                      Anonymously & Securely
+                    </span>
+                  </h1>
+                  <p className="mx-auto max-w-2xl text-lg sm:text-xl text-gray-300">
+                    A decentralized platform where you can share your thoughts,
+                    experiences, and problems without revealing your identity.
+                    Powered by blockchain technology.
+                  </p>
+                  <div className="flex justify-center gap-4">
+
+                      <Button
+                        size="lg"
+                        className="bg-gradient-to-r rounded from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
+                      >
+                        <Annon verified={'not'} Dis ={true}/>
+                      </Button>
+                   <Link href="/register">
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className="border-purple-700 rounded text-white bg-purple-950/50"
+                      >
+                      Learn More
+                    </Button>
+                      </Link>
+                  </div>
+                </div>
 
                     {/* Feature Cards */}
                     <div className="mt-24 px-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -140,14 +161,17 @@ export default function Home() {
                       </Card>
                     </div>
 
-                    <FAQSection />
-                  </main>
-                </div>
-              </div>
+                <FAQSection />
+                <Footer />
+              </main>
             </div>
-          </main>
+          </div>
         </div>
-      </GoogleOAuthProvider>
+      </main>
+      </div>
+      {/* </OktoProvider>
+        </GoogleOAuthProvider>
+    */}
     </>
   );
 }

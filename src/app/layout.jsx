@@ -5,7 +5,8 @@ import "./globals.css";
 
 // import { AnonAadhaarProvider } from "@anon-aadhaar/react";
 import { RainbowProvider } from "@/context/rainbow.jsx";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "@rainbow-me/rainbowkit/styles.css";
 import { AnonAadhaarProvider } from "@anon-aadhaar/react";
 
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
       >
         <AnonAadhaarProvider _useTestAadhaar={true}>
           <RainbowProvider>{children}</RainbowProvider>
+          <ToastContainer />
         </AnonAadhaarProvider>
       </body>
     </html>
