@@ -2,19 +2,20 @@
 
 import CommunitySection from "@/components/community";
 import { FAQSection } from "@/components/faqsection";
-// import { FeaturesSectionDemo } from "@/components/featuresection";
+import { FeaturesSectionDemo } from "@/components/featuresection";
 import Footer from "@/components/footer";
-// import { BackgroundLines } from "@/components/ui/background-lines";
+import { BackgroundLines } from "@/components/ui/background-lines";
 import { Button } from "@/components/ui/button1";
 import { Card } from "@/components/ui/card1";
 import { Input } from "@/components/ui/input";
 import { MessageCircle, Shield, Sparkles } from "lucide-react";
 import MainPage from "@/components/mainpage";
 import Link from "next/link";
-// import { GoogleOAuthProvider } from "@react-oauth/google";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 import { useState } from "react";
 import Annon from "@/components/Anon";
+import { BuildType, OktoProvider } from "okto-sdk-react";
 
 export default function Home() {
   const [authToken, setAuthToken] = useState(null);
@@ -24,8 +25,8 @@ export default function Home() {
   };
   return (
     <>
-     {/* <GoogleOAuthProvider clientId = {'1043490850112-1tq082boavjlrovfooila737opscklkv.apps.googleusercontent.com' }>
-    <OktoProvider apiKey={"02a1ac80-683f-4d32-b3c4-cb7101f9e2f3"} buildType={BuildType.SANDBOX}> */}
+     <GoogleOAuthProvider clientId = {'1043490850112-btudcjh4e9vvjubbcsespot93dmvqvto.apps.googleusercontent.com' }>
+    <OktoProvider apiKey={"02a1ac80-683f-4d32-b3c4-cb7101f9e2f3"} buildType={BuildType.SANDBOX}>
       <div>
 
        <MainPage setAuthToken={setAuthToken} authToken={authToken} handleLogout={handleLogout}  />
@@ -169,9 +170,9 @@ export default function Home() {
         </div>
       </main>
       </div>
-      {/* </OktoProvider>
+      </OktoProvider>
         </GoogleOAuthProvider>
-    */}
+   
     </>
   );
 }

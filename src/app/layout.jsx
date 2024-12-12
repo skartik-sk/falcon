@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
       >
         <RainbowProvider>
           <AnonAadhaarProvider _useTestAadhaar={true}>
-            <Header />
+            {/* <Header /> */}
             {children}
             <ToastContainer />
             <Footer />

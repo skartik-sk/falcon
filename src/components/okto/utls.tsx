@@ -8,6 +8,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { signOut } from "next-auth/react";
 import Error from "next/error";
 import React from "react";
+import { GoogleLogin } from "@react-oauth/google";
 
 const SignInButton = ({ setAuthToken, authToken, handleLogout }) => {
   const router = useRouter();
@@ -105,7 +106,7 @@ const SignInButton = ({ setAuthToken, authToken, handleLogout }) => {
 
   return (
     <div>
-      <ConnectButton />
+      {/* <ConnectButton /> */}
       <div>
         {!authToken ? (
           <GoogleLogin

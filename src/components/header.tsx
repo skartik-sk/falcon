@@ -3,11 +3,10 @@
 import Link from "next/link";
 
 
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { ConnectButton, WalletButton } from "@rainbow-me/rainbowkit";
+import SignInButton from "./okto/utls";
 
-const Header: React.FC<HeaderProps> = ({
-
-}) => {
+const Header: React.FC<HeaderProps> = ({ setAuthToken, authToken, handleLogout }) => {
 
 
   // useEffect(() => {
@@ -31,7 +30,8 @@ const Header: React.FC<HeaderProps> = ({
           </Link>
         </div>
         <div className="flex flex-col-reverse justify-center items-center sm:flex sm:flex-row gap-2 right-0">
-          <ConnectButton />
+          <WalletButton/>
+         <SignInButton setAuthToken={setAuthToken} authToken={authToken} handleLogout={handleLogout}  />
         </div>
       </div>
     </nav>
